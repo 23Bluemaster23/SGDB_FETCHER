@@ -3,6 +3,7 @@ import requests
 from backend import configparser
 from configuration.constants import API_HEADER
 
+
 def get_header():
     header  = API_HEADER
     header['Authorization'] = header['Authorization'].format(token = configparser.get_config('API','token'))
