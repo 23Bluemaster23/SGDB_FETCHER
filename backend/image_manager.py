@@ -1,6 +1,7 @@
+from backend import configparser
 import requests
-from PIL import Image
-
+import gi
+from gi.repository import Gtk
 from configuration.constants import IMAGE_TYPE
 
 
@@ -21,5 +22,14 @@ def download_image(url:str,type:int):
     image = image.resize(size)
     image.save(file_name)
 
+def get_image(slug:str,type:int):
+    file_name:str = ""
+    if type == IMAGE_TYPE.COVERTART:
+        file_name = configparser.get_config("IMG","coverart") + slug + '.jpg'
+    elif type == IMAGE_TYPE.BANNER:
+        file_name = configparser.get_config("IMG","banner") + slug + '.jpg'
+    elif type == IMAGE_TYPE.ICON:
+        file_name = configparser.get_config("IMG","icon") + slug + '.png'
+    return Gtk.Picture.new_for_filename(filename=file_name)
 # if __name__ == '__main__':
 #     download_image("https://media.geeksforgeeks.org/wp-content/uploads/20221014220743/karma.png",IMAGE_TYPE.ICON)

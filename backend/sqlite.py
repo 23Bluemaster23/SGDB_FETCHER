@@ -2,9 +2,10 @@ import sqlite3
 
 from backend import configparser
 from configuration.constants import DB_LOCATION
-
+import os
 
 def import_from_lutris():
+    delete_database()
     con = sqlite3.connect(configparser.get_config('DB','lutris'))
     cur = con.cursor()
     cur.execute('SELECT name,slug FROM games;')
@@ -22,6 +23,12 @@ def import_from_lutris():
     con.commit()
     con.close()
 
+def delete_database():
+    if os.path.exists(DB_LOCATION):
+        try:
+            os.remove(DB_LOCATION)
+        except PermissionError:
+            print("No tiene los permisos necesarios para eliminar")
 def create_database():
         con = sqlite3.connect(DB_LOCATION)
         cur = con.cursor()
@@ -41,7 +48,7 @@ def get_games():
     con = sqlite3.connect(DB_LOCATION)
     cur = con.cursor()
 
-    cur.execute('SELECT id,name,launcher FROM games;')
+    cur.execute('SELECT id,name,slug,launcher FROM games;')
     return cur.fetchall()
 
 def get_game(id:int):
@@ -58,7 +65,7 @@ def set_game_data(id:int,key:str,value:str):
     con.commit()
     con.close()
 
-# if __name__ == '__main__':
-#     #import_from_lutris()
-#     #print(get_game(1))
+if __name__ == '__main__':
+    #import_from_lutris()
+    print(get_games())
 #     set_game_data(1,'sgdb_id','NULL')

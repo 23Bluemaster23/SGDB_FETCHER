@@ -1,4 +1,4 @@
-CONFIG_LOCATION:str = "./setting.cfg"
+CONFIG_LOCATION:str = "./settings.cfg"
 DB_LOCATION:str = "./games.db"
 API_HEADER:dict = {
     "Authorization": 'Bearer {token}'

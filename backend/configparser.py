@@ -7,5 +7,5 @@ def get_config(section:str,option:str):
     config.read(CONFIG_LOCATION)
     return config[section][option]
 
-# if __name__ == '__main__':
-#     print(get_config('API','key'))
+#if __name__ == '__main__':
+    #print(get_config('API','token'))
