@@ -3,7 +3,7 @@ games.db
 __pycache__/
 *.py[codz]
 *$py.class
-setting.cfg
+settings.cfg
 # C extensions
 *.so
 

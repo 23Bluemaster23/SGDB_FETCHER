@@ -65,7 +65,7 @@ def set_game_data(id:int,key:str,value:str):
     con.commit()
     con.close()
 
-if __name__ == '__main__':
-    #import_from_lutris()
-    print(get_games())
+# if __name__ == '__main__':
+#     import_from_lutris()
+#     print(get_games())
 #     set_game_data(1,'sgdb_id','NULL')
